@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FlagMovilPortable.Pages.PositionsPage"
+    BackgroundColor="{StaticResource BackgroundColor}"
+    Title="Positions"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <StackLayout
+        BindingContext="{Binding Positions}"
+        Padding="8">
+        <Grid
+            Padding="8">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label
+                        Grid.Column="1"
+                        Text="Team"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        TextColor="Black">
+                </Label>
+                <Label
+                        Grid.Column="2"
+                        Text="GP"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        TextColor="Black">
+                </Label>
+                <Label
+                        Grid.Column="3"
+                        Text="Points"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        TextColor="Black">
+                </Label>
+                <Label
+                        Grid.Column="4"
+                        Text="Diff"
+                        FontAttributes="Bold"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        TextColor="Black">
+                </Label>
+                <Label
+                        Grid.Column="5"
+                        Text="#"
+                        FontAttributes="Bold"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        TextColor="Black">
+                </Label>
+            </Grid>
+        </Grid>
+        <ListView
+            ItemsSource="{Binding TournamentTeam}"
+            HasUnevenRows="True"
+            IsPullToRefreshEnabled="True"
+            RefreshCommand="{Binding RefreshCommand}"
+            IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout
+                                    Orientation="Vertical">
+                                <Image
+                                    Grid.Column="0"
+                                    Source="{Binding Team.FullLogo}"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="50"
+                                    HeightRequest="50">
+                                </Image>
+                                <Label
+                                    TextColor="Black"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="End"
+                                    Text="{Binding Team.Name}">
+                                </Label>
+                            </StackLayout>
+                                <Label
+                                    Grid.Column="1"
+                                    TextColor="Black"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Text="{Binding MatchesPlayed}">                                
+                                </Label>
+                                <Label
+                                    Grid.Column="2"
+                                    TextColor="Black"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Text="{Binding Points}">
+                                </Label>
+                                <Label
+                                    Grid.Column="3"
+                                    TextColor="Black"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Text="{Binding DifferenceGoals}">
+                                </Label>
+                                <Label
+                                    Grid.Column="4"
+                                    TextColor="Black"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Text="{Binding Position}">
+                                </Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
